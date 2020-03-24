@@ -16,21 +16,18 @@ def home():
 # A route to return all of the available entries in our catalog.
 @app.route('/compositeUsers/<path:userId>', methods=['GET'])
 def cardFilter(userId):
-	ccState = ""
-	deviceState = ""
-	j = makeJsonObjects(token, userId, ccState, deviceState)
-	return jsonify(j)
-		
-	if('creditCardState' in request.args):
-		ccState = request.args['creditCardState']
-		j = makeJsonObjects(token, userId, ccState, "")
-		return jsonify(j)
-	elif('deviceState' in request.args):
-		deviceState = request.args['deviceState']
-		j = makeJsonObjects(token, userId, "", deviceState)
-		return jsonify(j)
+	a = str(request.args.get('creditCardState'))
+	b = str(request.args.get('deviceState'))
+	
+	if(a == "None"):
+		a = ""
+	if(b == "None"):
+		b = ""
+	ccState = a
+	deviceState = b
 
-	#j = makeJsonObjects(token, userId, ccState, deviceState)
-	#return jsonify(j)	
+	j = makeJsonObjects(token, userId, ccState, deviceState)
+	return jsonify(j)	
+
 
 app.run()

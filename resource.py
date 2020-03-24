@@ -19,9 +19,9 @@
 
 #Requirement: The API SHOULD support two optional filters: creditCardState, deviceState
 #			The filter for the credit card state is fulfilled by the method addCreditCardsToJson. This
-#			method only adds the credit cards if the state is equal to the filter (it's a case insensitive check).
+#			method only adds the credit cards if the state is equal to the filter.
 #			The filter for the device state is fulfilled by the method addDevicesToJson. This method
-#			only adds the devices if the state is equal to the filter (it's a case insensitive check).
+#			only adds the devices if the state is equal to the filter.
 
 
 
@@ -145,7 +145,7 @@ def addCreditCardsToJson(jObj, creditCards, cardStates, f):
 			jObj["creditCard"+str(i)] = {"creditCardId":creditCards[i], "state":cardStates[i]}
 	else:
 		for i in range(len(creditCards)):
-			if(cardStates[i] == f.upper()):
+			if(cardStates[i] == f):
 				jObj["creditCard"+str(i)] = {"creditCardId":creditCards[i], "state":cardStates[i]}
 
 	return jObj
@@ -158,7 +158,7 @@ def addDevicesToJson(jObj, deviceIds, deviceStates, f):
 			jObj["device"+str(k)] = {"deviceId":deviceIds[k], "state":deviceStates[k]}
 	else:
 		for k in range(len(deviceIds)):
-			if(deviceStates[k] == f.upper()):
+			if(deviceStates[k] == f):
 				jObj["device"+str(k)] = {"deviceId":deviceIds[k], "state":deviceStates[k]}
 	
 	return jObj
